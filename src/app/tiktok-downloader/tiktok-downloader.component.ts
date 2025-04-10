@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-tiktok-downloader',
@@ -38,7 +39,7 @@ export class TikTokDownloaderComponent {
     this.isSearchCompleted = false;
 
     try {
-      const apiUrl = `http://localhost:3000/download`;
+      const apiUrl = `${environment.backendUrl}/download`;
       const response = await firstValueFrom(this.http.post<any>(apiUrl, { url: url }));
 
       console.log('response:', response);
