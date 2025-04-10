@@ -1,27 +1,62 @@
-# TiktokDownloader
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+# TikTok Downloader - Frontend
 
-## Development server
+This project is a frontend for a TikTok video downloader application. It allows users to enter a TikTok URL, retrieve available video sources, and download the video in the desired quality.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **TikTok URL Validation**: The component validates that the entered URL belongs to TikTok, including short links from `vm.tiktok.com`.
+- **Video Source Search**: Once the URL is validated, the frontend sends a request to a backend to retrieve the available video sources.
+- **Video Download**: Users can download the video in the quality they prefer, obtaining a `.mp4` file.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Dependencies
 
-## Build
+- Angular 15
+- RxJS
+- HttpClientModule
+- FormsModule
+- CommonModule
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Setup
 
-## Running unit tests
+To run the frontend, follow these steps:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 1. Clone the repository
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/SaithG04/tiktok-downloader-frontend.git
+cd tiktok-downloader-frontend
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 2. Install dependencies
 
-## Further help
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 3. Run the application
+
+```bash
+ng serve
+```
+
+Visit `http://localhost:4200` in your browser to access the application.
+
+## Usage
+
+1. Enter a TikTok video URL in the input field.
+2. Click the "Download" button to fetch the available video sources.
+3. Select a video quality from the options provided.
+4. Click the "Download" button next to the preferred video quality to start the download.
+
+## Backend
+
+This frontend interacts with a backend API that handles video source extraction and downloading. Make sure to have the backend running on `http://localhost:3000` for the frontend to work correctly.
+
+## Contributing
+
+Feel free to fork this repository, open issues, and submit pull requests. All contributions are welcome!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

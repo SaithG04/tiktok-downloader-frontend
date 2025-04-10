@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar TikTok</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Solo muestra el título si isTitleVisible es verdadero -->
+        <h1 *ngIf="isTitleVisible">Descargar video de TikTok</h1>
+        
+        <!-- Solo muestra el formulario si isFormVisible es verdadero -->
+        <form *ngIf="isFormVisible" (ngSubmit)="onSubmit()">
+            <label for="urlInput">Ingresa la URL de TikTok:</label><br>
+            <input type="text" id="urlInput" [(ngModel)]="url" name="url" placeholder="https://www.tiktok.com" required><br><br>
+            <button type="submit">Descargar video</button>
+        </form>
+
+        <!-- Indicador de carga -->
+        <div *ngIf="isLoading" class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Mostrar el resultado -->
+        <div *ngIf="output" [innerHTML]="output" class="output"></div>
+        
+        <!-- Mostrar fuentes de video si están disponibles -->
+        <div *ngIf="sources.length > 0" class="sources">
+            <h3>Fuentes de video disponibles:</h3>
+            <div *ngFor="let source of sources; let i = index">
+            <p>Fuente {{ i + 1 }} (Calidad: {{ extractQuality(source.url) }}): 
+                <button (click)="downloadVideo(source.url, 'video_' + getTimestamp() + '_source_' + (i + 1) + '.mp4')">
+                Descargar video {{ i + 1 }}
+                </button>
+            </p>
+            </div>
+        </div>  
+
+        <!-- Botón para buscar un nuevo video -->
+        <div *ngIf="isSearchCompleted">
+            <button (click)="onNewSearch()">Buscar un nuevo video</button>
+        </div>
+
+    </div>
+</body>
+</html>
